@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cornerstone/shared": ["libs/shared/src/index.ts"]
+      "@cornerstone/shared": ["libs/shared/src/index.ts"],
+      "@cornerstone/client": ["libs/client/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
