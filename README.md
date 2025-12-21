@@ -1,161 +1,59 @@
-# Cornerstone
+# CornerstoneFe
 
-A modern full-stack monorepo built with **Nx**, featuring an **Angular 21** frontend and **NestJS 11** backend
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
 
-## 🏗️ Project Structure
+## Development server
 
-```
-cornerstone/
-├── apps/
-│   ├── frontend/          # Angular 21 application
-│   ├── frontend-e2e/      # Cypress e2e tests for frontend
-│   ├── backend/           # NestJS 11 API server
-│   └── backend-e2e/       # Jest e2e tests for backend
-├── nx.json                # Nx workspace configuration
-├── package.json           # Dependencies and scripts
-└── tsconfig.base.json     # Base TypeScript configuration
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js** >= 20.x
-- **npm** >= 10.x
-
-### Installation
+To start a local development server, run:
 
 ```bash
-# Clone the repository
-git clone git@github.com:shreyashrajiokalaskar/cornerstone.git
-
-# Navigate to project directory
-cd cornerstone
-
-# Install dependencies
-npm install
+ng serve
 ```
 
-## 📦 Available Commands
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-### Development
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-# Start frontend dev server (default: http://localhost:4200)
-npx nx serve frontend
-
-# Start backend dev server (default: http://localhost:3000)
-npx nx serve backend
-
-# Start both frontend and backend
-npx nx run-many -t serve -p frontend backend
+ng generate component component-name
 ```
 
-### Build
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-# Build frontend for production
-npx nx build frontend
-
-# Build backend for production
-npx nx build backend
-
-# Build all projects
-npx nx run-many -t build
+ng generate --help
 ```
 
-### Testing
+## Building
+
+To build the project run:
 
 ```bash
-# Run frontend unit tests
-npx nx test frontend
-
-# Run backend unit tests
-npx nx test backend
-
-# Run all unit tests
-npx nx run-many -t test
-
-# Run frontend e2e tests
-npx nx e2e frontend-e2e
-
-# Run backend e2e tests
-npx nx e2e backend-e2e
+ng build
 ```
 
-### Linting
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
 ```bash
-# Lint frontend
-npx nx lint frontend
-
-# Lint backend
-npx nx lint backend
-
-# Lint all projects
-npx nx run-many -t lint
+ng test
 ```
 
-### Formatting
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
 
 ```bash
-# Check formatting
-npx nx format:check
-
-# Fix formatting
-npx nx format:write
+ng e2e
 ```
 
-## 🛠️ Tech Stack
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-### Frontend
+## Additional Resources
 
-- **Angular 21** - Modern web framework
-- **RxJS 7.8** - Reactive programming
-- **SCSS** - CSS preprocessor
-- **Jest** - Unit testing
-- **Cypress** - E2E testing
-
-### Backend
-
-- **NestJS 11** - Node.js framework
-- **Express** - HTTP server
-- **Jest** - Unit & E2E testing
-
-### Tooling
-
-- **Nx 22** - Monorepo management & build system
-- **TypeScript 5.9** - Type safety
-- **ESLint 9** - Code linting
-- **Prettier** - Code formatting
-- **Webpack** - Module bundler
-
-## 📊 Nx Graph
-
-Visualize project dependencies:
-
-```bash
-npx nx graph
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create environment-specific configurations as needed in the respective app directories.
-
-### Ports
-
-| Service  | Default Port |
-| -------- | ------------ |
-| Frontend | 4200         |
-| Backend  | 3000         |
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 👤 Author
-
-**Shreyash Kalaskar**
-📧 shreyashrajiokalaskar@gmail.com
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
