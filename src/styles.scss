@@ -1,0 +1,43 @@
+/* src/styles.scss */
+@use '@angular/material' as mat;
+// 1. Correct path to your generated colors
+// This assumes _theme-colors.scss is in src/styles/
+@use './styles/theme-colors' as colors;
+
+@import "bootstrap/dist/css/bootstrap.min.css";
+@include mat.core();
+
+// 2. Define the theme
+$my-theme: mat.define-theme((color: (theme-type: light,
+                primary: colors.$primary-palette,
+                tertiary: colors.$tertiary-palette,
+            ),
+            typography: (brand-family: 'Inter, sans-serif',
+                plain-family: 'Inter, sans-serif',
+                bold-weight: 700),
+            density: (scale: 0)));
+
+// 3. Apply styles to the app
+html {
+    @include mat.all-component-themes($my-theme);
+    @include mat.typography-hierarchy($my-theme);
+
+    // Your H1 Size Fix
+    --mat-sys-headline-large-size: 32px;
+    --mat-sys-headline-large-weight: 700;
+}
+
+// 4. Global Overrides
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: var(--mat-sys-headline-large-size);
+    font-weight: var(--mat-sys-headline-large-weight);
+}
