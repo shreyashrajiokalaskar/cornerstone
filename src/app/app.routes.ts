@@ -2,32 +2,31 @@ import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
 import { Signup } from './auth/signup/signup';
 import { Dashboard } from './dashboard/dashboard';
-import { ROUTES } from './shared/constant/common.constant';
-import { authGuard } from './shared/guards/auth/auth-guard';
+import { APP_ROUTES, authGuard } from './shared';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: `${ROUTES.auth}/${ROUTES.login}`,
+    redirectTo: `${APP_ROUTES.auth}/${APP_ROUTES.login}`,
     pathMatch: 'full',
   },
   {
-    path: ROUTES.auth,
+    path: APP_ROUTES.auth,
     children: [
       {
-        path: ROUTES.login,
+        path: APP_ROUTES.login,
         component: Login,
         canActivate: [authGuard],
       },
       {
-        path: ROUTES.signup,
+        path: APP_ROUTES.signup,
         component: Signup,
         canActivate: [authGuard],
       },
     ],
   },
   {
-    path: ROUTES.dashboard,
+    path: APP_ROUTES.dashboard,
     component: Dashboard,
     canActivate: [authGuard],
   },

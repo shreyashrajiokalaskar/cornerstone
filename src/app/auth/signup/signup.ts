@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   AbstractControl,
@@ -14,7 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
-import { ROUTES } from '../../shared/constant/common.constant';
+import { APP_ROUTES } from '@shared/resources';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -35,13 +37,18 @@ import { AuthService } from '../auth.service';
 export class Signup {
   signupForm: FormGroup;
   hidePassword = true;
-
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  hideConfirmPassword = true;
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {
     this.signupForm = this.fb.group(
       {
-        name: ['', [Validators.required, Validators.minLength(2)]],
+        name: ['', [Validators.required, Validators.minLength(4)]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
       },
       { validators: this.passwordMatchValidator }
@@ -52,9 +59,19 @@ export class Signup {
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-    return password && confirmPassword && password.value !== confirmPassword.value
-      ? { passwordMismatch: true }
-      : null;
+
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      // Manually set the error on the specific field
+      confirmPassword.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    } else {
+      // If they match, we need to clear the manual error
+      // but keep other errors (like 'required') if they exist
+      if (confirmPassword?.hasError('passwordMismatch')) {
+        confirmPassword.setErrors(null);
+      }
+      return null;
+    }
   }
 
   submit() {
@@ -69,7 +86,12 @@ export class Signup {
         .subscribe({
           next: (res) => {
             console.log(res);
-            this.router.navigate([`${ROUTES.auth}/${ROUTES.login}`]);
+            this.toastrService.success('Account created successfully!');
+            this.router.navigate([`${APP_ROUTES.auth}/${APP_ROUTES.login}`]);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message);
+            this.toastrService.error(err.error.message);
           },
         });
       // Proceed to: Create Workspace

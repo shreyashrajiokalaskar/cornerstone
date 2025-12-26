@@ -16,7 +16,7 @@ export const API_ENDPOINTS = {
   },
 };
 
-export const ROUTES = {
+export const APP_ROUTES = {
   auth: 'auth',
   login: 'login',
   signup: 'signup',

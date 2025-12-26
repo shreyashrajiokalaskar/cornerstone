@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  API_ENDPOINTS,
+  APP_ROUTES,
+  CommonHttpService,
+  IHttpResponse,
+  IUserDetails,
+  SESSION_KEYS,
+} from '@shared/resources';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, tap } from 'rxjs';
-import { API_ENDPOINTS, ROUTES, SESSION_KEYS } from '../shared/constant/common.constant';
-import { IHttpResponse, IUserDetails } from '../shared/interface/common.interface';
-import { CommonHttpService } from '../shared/services/common-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +54,7 @@ export class AuthService {
           console.log('LOGOUT SUCCESSFUL!');
           sessionStorage.clear();
           this.toastrService.success('Logged out successfully!');
-          this.router.navigate([`${ROUTES.auth}/${ROUTES.login}`]);
+          this.router.navigate([`${APP_ROUTES.auth}/${APP_ROUTES.login}`]);
         },
       });
   }

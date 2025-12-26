@@ -15,8 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { SESSION_KEYS } from '../../shared/constant/common.constant';
-import { IHttpResponse, IUserDetails } from '../../shared/interface/common.interface';
+
+import { IHttpResponse, IUserDetails, SESSION_KEYS } from '@shared/resources';
 import { AuthService } from '../auth.service';
 
 @Component({
